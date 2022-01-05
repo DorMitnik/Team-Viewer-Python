@@ -7,12 +7,13 @@ import pickle as pickle
 
 running = True
 pg.PAUSE = 0  # Pause between the moveTo function
+server_IP = input("Enter the server IP address: ")
 
 
 class Streaming:
     def __init__(self):
         """Initialize the connections with the server"""
-        self.client = ScreenShareClient(socket.gethostbyname(socket.gethostname()), 5050)
+        self.client = ScreenShareClient(server_IP, 5050, x_res=1920, y_res=1080)
         self.conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def streaming_function(self):
@@ -32,7 +33,7 @@ class Messages:
 
     def receive_message(self):
         """Receive message and moves/click"""
-        self.conn.connect((socket.gethostname(), 1234))
+        self.conn.connect((server_IP, 1234))
         while True:
             data = pickle.loads(self.conn.recv(4096))
             if isinstance(data, pg.Point):
