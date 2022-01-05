@@ -1,4 +1,5 @@
 import time
+import win32api
 from vidstream import StreamingServer
 import threading
 import socket
@@ -10,12 +11,12 @@ running = True
 
 class Streaming:
     def __init__(self):
-        self.server = StreamingServer(socket.gethostbyname(socket.gethostname()), 5050)
+        self.server = StreamingServer('', 5050)
 
     def start_stream(self):
         """start the streaming of the other screen"""
         self.server.start_server()
-        print(f"Connection from {socket.gethostbyname(socket.gethostname())} has been established!")
+        print(f"Connection from  has been established!")
         while running:
             time.sleep(1)
 
@@ -26,15 +27,12 @@ class Messages:
     def __init__(self):
         """Initialize the connections with the client"""
         self.conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.conn.bind((socket.gethostname(), 1234))
+        self.conn.bind(('', 1234))
         self.conn.listen(5)
         self.client_socket, address = self.conn.accept()
 
     def click_mouse(self):
         """Tells when mouse is clicked and send to target to click as well"""
-        import win32api
-        import time
-
         state_left = win32api.GetKeyState(0x01)  # Left button down = 0 or 1. Button up = -127 or -128
         state_right = win32api.GetKeyState(0x02)  # Right button down = 0 or 1. Button up = -127 or -128
 
