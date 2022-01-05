@@ -13,7 +13,7 @@ packaging==21.3
 pickle4==0.0.1
 Pillow==9.0.0
 pipwin==0.5.1
-PyAudio @ file:///C:/Users/dormi/pipwin/PyAudio-0.2.11-cp39-cp39-win_amd64.whl
+PyAudio 
 PyAutoGUI==0.9.53
 pygame==2.1.2
 PyGetWindow==0.0.9
