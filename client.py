@@ -5,7 +5,7 @@ import threading
 import pyautogui as pg
 import pickle as pickle
 
-running = True
+
 pg.PAUSE = 0  # Pause between the moveTo function
 server_IP = input("Enter the server IP address: ")
 
@@ -15,12 +15,13 @@ class Client:
         """Initialize the connections with the server"""
         self.client = ScreenShareClient(server_IP, 5050, x_res=1920, y_res=1080)
         self.conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.running = True
 
     def streaming_function(self):
         """Shares the screen with the server"""
         print("[START STREAMING]....")
         self.client.start_stream()
-        while running:
+        while self.running:
             time.sleep(1)
 
         print("[STOP STREAMING]....")
