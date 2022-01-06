@@ -1,7 +1,5 @@
-import time
 from vidstream import ScreenShareClient
 import socket
-import threading
 import pyautogui as pg
 import pickle as pickle
 
