@@ -9,9 +9,13 @@ import pickle as pickle
 running = True
 
 
-class Streaming:
+class Server:
     def __init__(self):
         self.server = StreamingServer('', 5050)
+        self.conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.conn.bind(('', 1234))
+        self.conn.listen(5)
+        self.client_socket, address = self.conn.accept()
 
     def start_stream(self):
         """start the streaming of the other screen"""
@@ -21,15 +25,6 @@ class Streaming:
             time.sleep(1)
 
         self.server.stop_server()
-
-
-class Messages:
-    def __init__(self):
-        """Initialize the connections with the client"""
-        self.conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.conn.bind(('', 1234))
-        self.conn.listen(5)
-        self.client_socket, address = self.conn.accept()
 
     def click_mouse(self):
         """Tells when mouse is clicked and send to target to click as well"""
@@ -75,12 +70,11 @@ class Messages:
 
 
 def main():
-    streaming = Streaming()
-    send = Messages()
+    server = Server()
     """Declaring and starting the threads"""
-    t = threading.Thread(target=streaming.start_stream)
-    t2 = threading.Thread(target=send.send_data)
-    t3 = threading.Thread(target=send.click_mouse)
+    t = threading.Thread(target=server.start_stream)
+    t2 = threading.Thread(target=server.send_data)
+    t3 = threading.Thread(target=server.click_mouse)
 
     t.start()
     t2.start()
