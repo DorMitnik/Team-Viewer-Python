@@ -7,10 +7,10 @@ import pickle as pickle
 
 running = True
 pg.PAUSE = 0  # Pause between the moveTo function
-server_IP = input("Enter the server IP address: ")
+server_IP = '172.20.10.5'  # input("Enter the server IP address: ")
 
 
-class Streaming:
+class Client:
     def __init__(self):
         """Initialize the connections with the server"""
         self.client = ScreenShareClient(server_IP, 5050, x_res=1920, y_res=1080)
@@ -26,25 +26,18 @@ class Streaming:
         print("[STOP STREAMING]....")
         self.client.stop_stream()
 
-
-class Messages:
-    def __init__(self):
-        self.conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
     def receive_message(self):
         """Receive message and moves/click"""
         self.conn.connect((server_IP, 1234))
         while True:
             data = pickle.loads(self.conn.recv(4096))
             if isinstance(data, pg.Point):
-                MouseControl.move_mouse_location(data)
+                self.move_mouse_location(data)
             elif data == "LBP":
-                MouseControl.mouse_click()
+                self.mouse_click()
 
             print(data)
 
-
-class MouseControl:
     @staticmethod
     def move_mouse_location(location):
         """Moving the mouse location to X, Y coordinates"""
@@ -64,10 +57,9 @@ class MouseControl:
 
 
 def main():
-    streaming = Streaming()
-    receive = Messages()
-    t = threading.Thread(target=streaming.streaming_function)
-    t2 = threading.Thread(target=receive.receive_message)
+    client = Client()
+    t = threading.Thread(target=client.streaming_function)
+    t2 = threading.Thread(target=client.receive_message)
 
     t.start()
     t2.start()
