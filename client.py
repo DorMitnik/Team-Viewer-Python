@@ -7,7 +7,7 @@ import pickle as pickle
 
 running = True
 pg.PAUSE = 0  # Pause between the moveTo function
-server_IP = '172.20.10.5'  # input("Enter the server IP address: ")
+server_IP = input("Enter the server IP address: ")
 
 
 class Client:
