@@ -6,7 +6,7 @@ import socket
 import pyautogui as pg
 import pickle as pickle
 
-running = True
+
 
 
 class Server:
@@ -16,12 +16,13 @@ class Server:
         self.conn.bind(('', 1234))
         self.conn.listen(5)
         self.client_socket, address = self.conn.accept()
-
+        self.running = True
+        
     def start_stream(self):
         """start the streaming of the other screen"""
         self.server.start_server()
         print(f"Connection from  has been established!")
-        while running:
+        while self.running:
             time.sleep(1)
 
         self.server.stop_server()
