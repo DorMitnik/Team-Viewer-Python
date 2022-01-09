@@ -14,7 +14,6 @@ class Server:
         self.conn.bind(('', 1234))
         self.conn.listen(5)
         self.client_socket, address = self.conn.accept()
-        self.running = True
 
     def start_stream(self):
         """start the streaming of the other screen"""
@@ -26,7 +25,7 @@ class Server:
         state_left = win32api.GetKeyState(0x01)  # Left button down = 0 or 1. Button up = -127 or -128
         state_right = win32api.GetKeyState(0x02)  # Right button down = 0 or 1. Button up = -127 or -128
 
-        while self.running:
+        while True:
             get_state_left = win32api.GetKeyState(0x01)
             get_state_right = win32api.GetKeyState(0x02)
             state = ""
@@ -52,7 +51,7 @@ class Server:
         """start the streaming of the cursor data"""
         current_location = pg.Point(0, 0)
 
-        while self.running:
+        while True:
             current_mouse_location = pg.position()
             if current_mouse_location != current_location:
                 current_location = current_mouse_location
