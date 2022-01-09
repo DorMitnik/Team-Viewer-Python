@@ -62,7 +62,7 @@ class Server:
                 pass  # Do nothing if the cursor is at the same location
 
 
-def main():
+if __name__ == '__main__':
     server = Server()
     print("Server is up!")
     """Declaring and starting the threads"""
@@ -75,4 +75,4 @@ def main():
     t3.start()
 
 
-main()
+
