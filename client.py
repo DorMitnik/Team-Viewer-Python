@@ -53,7 +53,7 @@ class Client:
     def move_mouse_location(location):
         """Moving the mouse location to X, Y coordinates"""
         try:
-            pg.moveTo(location.x, location.y, )
+            pg.moveTo(location.x, location.y)
 
         except KeyboardInterrupt as e:
             raise Exception(e)
