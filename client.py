@@ -31,16 +31,12 @@ class Client:
         if not self.sharing:
             self.sharing = True
             self.streaming_function(server_IP)
-        else:
-            pass
 
     def stop_server(self, server_IP):
         """Takes the Server IP and stops the server"""
         if self.sharing:
             self.sharing = False
             self.streaming_function(server_IP)
-        else:
-            pass
 
     def receive_message(self):
         """Receive message and moves/click"""
