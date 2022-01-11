@@ -12,17 +12,16 @@ class MyWindow(QMainWindow):
         self.setGeometry(680, 300, 500, 500)
         self.setWindowTitle("GUI")
         self.client = client.Client()
-        self.q_pixmap = QPixmap('Starcraft.jpg')
         self.initUI()
 
     def initUI(self):
         self.setStyleSheet("background-color: #89CFF0")
-        self.pixmap = QPixmap('Starcraft.png')
+        self.pixmap = QPixmap('rsz_starcraft.png')
 
         self.label = QLabel(self)
         self.label.setPixmap(self.pixmap)
-        self.label.resize(400, 120)
-        self.label.move(59, 0)
+        self.label.resize(400, 90)
+        self.label.move(80, 20)
 
         self.app_label = QLabel("Team Viewer - Python", self)
         self.app_label.move(65, 120)
