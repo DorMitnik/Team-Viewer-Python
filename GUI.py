@@ -38,11 +38,13 @@ class MyWindow(QMainWindow):
 
         self.start_stream = QtWidgets.QPushButton(self)
         self.start_stream.setText("Start")
+        self.start_stream.setStyleSheet("background-color: #DB4437")
         self.start_stream.setFont(QtGui.QFont("Baskerville Old Face", 10))
         self.start_stream.move(130, 400)
         self.start_stream.clicked.connect(self.connect_server)
 
         self.stop_stream = QtWidgets.QPushButton(self)
+        self.stop_stream.setStyleSheet("background-color: #DB4437")
         self.stop_stream.setText("Stop")
         self.stop_stream.setFont(QtGui.QFont("Baskerville Old Face", 10))
         self.stop_stream.move(270, 400)
