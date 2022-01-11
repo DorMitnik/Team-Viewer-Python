@@ -14,14 +14,15 @@ class MyWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        self.setStyleSheet("background-color: brown")
+        self.setStyleSheet("background-color: #89CFF0")
 
-        self.app_label = QLabel("Team-Viewer-Python", self)
-        self.app_label.move(120, 100)
-        self.app_label.setFont(QtGui.QFont("Sanserif", 20))
+        self.app_label = QLabel("Team Viewer-Python", self)
+        self.app_label.move(80, 100)
+        self.app_label.setFont(QtGui.QFont("Bauhaus 93", 30))
         self.app_label.adjustSize()
 
-        self.connection_label = QLabel('Enter IP:', self)
+        self.connection_label = QLabel('Enter Server IP:', self)
+        self.connection_label.setFont(QtGui.QFont("Bauhaus 93", 10))
         self.connection_label.move(150, 225)
 
         self.textbox = QLineEdit(self)
@@ -30,11 +31,13 @@ class MyWindow(QMainWindow):
 
         self.start_stream = QtWidgets.QPushButton(self)
         self.start_stream.setText("Start")
+        self.start_stream.setFont(QtGui.QFont("Baskerville Old Face", 10))
         self.start_stream.move(130, 400)
         self.start_stream.clicked.connect(self.connect_server)
 
         self.stop_stream = QtWidgets.QPushButton(self)
         self.stop_stream.setText("Stop")
+        self.stop_stream.setFont(QtGui.QFont("Baskerville Old Face", 10))
         self.stop_stream.move(270, 400)
         self.stop_stream.clicked.connect(self.disconnect_server)
 
