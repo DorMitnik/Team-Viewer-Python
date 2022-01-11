@@ -29,12 +29,12 @@ class MyWindow(QMainWindow):
         self.textbox.resize(200, 40)
 
         self.start_stream = QtWidgets.QPushButton(self)
-        self.start_stream.setText("Start Server")
+        self.start_stream.setText("Start")
         self.start_stream.move(130, 400)
         self.start_stream.clicked.connect(self.connect_server)
 
         self.stop_stream = QtWidgets.QPushButton(self)
-        self.stop_stream.setText("Stop Server")
+        self.stop_stream.setText("Stop")
         self.stop_stream.move(270, 400)
         self.stop_stream.clicked.connect(self.disconnect_server)
 
