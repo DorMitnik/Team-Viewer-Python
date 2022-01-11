@@ -60,7 +60,8 @@ class MyWindow(QMainWindow):
             self.client.start_server(self.server_IP)
         else:
             msg = QMessageBox()
-            msg.setWindowTitle("Error connecting")
+            msg.setStyleSheet("background-color : #89CFF0")
+            msg.setWindowTitle("Error")
             msg.setText("Please enter valid IP")
             msg.exec_()
 
@@ -72,7 +73,8 @@ class MyWindow(QMainWindow):
             self.client.stop_server(self.server_IP)
         else:
             msg = QMessageBox()
-            msg.setWindowTitle("Error connecting")
+            msg.setStyleSheet("background-color : #89CFF0")
+            msg.setWindowTitle("Error")
             msg.setText("Please enter valid IP")
             msg.exec_()
 
